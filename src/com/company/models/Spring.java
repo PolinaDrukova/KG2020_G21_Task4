@@ -31,25 +31,31 @@ public class Spring implements IModel {
     public List<PolyLine3D> getLines() {
         LinkedList<PolyLine3D> lines = new LinkedList<>();
 
-        double currentRad = 0;
-        float radStep = (float) (2 * Math.PI / frequency);
-        float zStep = step / frequency;
+        double da = 0;
+        float stepOfRad = (float) (2 * Math.PI / frequency);
+        float stepOfZ = step / frequency;
         float dx;
         float dy;
         float dz = 0;
+        Vector3 vector = new Vector3(radius, 0, dz);
+        Vector3 previousVector;
 
         for (int j = 0; j < turns; j++) {
-            for (int i = 0; i <= frequency; i++) {
-                dx = (float) (radius * Math.cos(currentRad));
-                dy = (float) (radius * Math.sin(currentRad));
-                dz += zStep;
-                lines.add(new PolyLine3D(Arrays.asList(new Vector3(centre.getX() + dx, centre.getY() + dz, centre.getZ() + dy)), true));
-                if (direction) {
-                    currentRad -= radStep;
-                } else {
-                    currentRad += radStep;
-                }
+            for (int i = 0; i < frequency; i++) {
+                dx = (float) (radius * Math.cos(da));
+                dy = (float) (radius * Math.sin(da));
+                dz += stepOfZ;
+                previousVector = vector;
+                vector = new Vector3(centre.getX() + dx, centre.getY() + dz, centre.getZ() + dy);
 
+                lines.add(new PolyLine3D(Arrays.asList(previousVector, vector), true));
+
+                if (direction) {
+                    da -= stepOfRad;
+                } else {
+
+                    da += stepOfRad;
+                }
             }
         }
         return lines;

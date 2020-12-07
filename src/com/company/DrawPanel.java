@@ -32,14 +32,9 @@ public class DrawPanel extends JPanel
         scene = new Scene(Color.WHITE.getRGB());
         scene.showAxes();
 
-        scene.getModelsList().add(new Parallelepiped(
-                new Vector3(-0.4f, -0.4f, -0.4f),
-                new Vector3(0.4f, 0.4f, 0.4f)
-        ));
-
         scene.getModelsList().add(new Spring(
-               0.4f,
-                new Vector3(0, 0, 0), 0.1f, 3, 1000, false
+               0.1f,
+                new Vector3(0,0, 0), 0.1f, 6, 1000, false
         ));
 
         camController.addRepaintListener(this);
