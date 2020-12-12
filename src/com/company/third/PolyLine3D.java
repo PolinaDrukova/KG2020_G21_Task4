@@ -23,7 +23,6 @@ public class PolyLine3D {
         this.points = new LinkedList<Vector3>(points);
         this.closed = closed;
     }
-
     /**
      * Признак закрытости
      * @return возвращает истину, если линия замкнута, иначе - ложь.

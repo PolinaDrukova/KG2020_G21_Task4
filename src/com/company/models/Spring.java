@@ -4,9 +4,7 @@ import com.company.math.Vector3;
 import com.company.third.IModel;
 import com.company.third.PolyLine3D;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 public class Spring implements IModel {
@@ -33,27 +31,23 @@ public class Spring implements IModel {
 
         double da = 0;
         float stepOfRad = (float) (2 * Math.PI / frequency);
-        float stepOfZ = step / frequency;
+        float stepOfY = step / frequency;
         float dx;
-        float dy;
+        float dy = 0;
         float dz = 0;
         Vector3 vector = new Vector3(radius, 0, dz);
         Vector3 previousVector;
-
         for (int j = 0; j < turns; j++) {
             for (int i = 0; i < frequency; i++) {
                 dx = (float) (radius * Math.cos(da));
-                dy = (float) (radius * Math.sin(da));
-                dz += stepOfZ;
+                dz = (float) (radius * Math.sin(da));
+                dy += stepOfY;
                 previousVector = vector;
-                vector = new Vector3(centre.getX() + dx, centre.getY() + dz, centre.getZ() + dy);
-
+                vector = new Vector3(centre.getX() + dx, centre.getY() + dy, centre.getZ() + dz);
                 lines.add(new PolyLine3D(Arrays.asList(previousVector, vector), true));
-
                 if (direction) {
                     da -= stepOfRad;
                 } else {
-
                     da += stepOfRad;
                 }
             }

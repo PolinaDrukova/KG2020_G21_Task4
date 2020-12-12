@@ -3,6 +3,7 @@ package com.company.math;
 
 /**
  * Класс, хранящий трёхмерный вектор / точку в трёхмерном пространстве.
+ *
  * @author Alexey
  */
 public class Vector3 {
@@ -10,6 +11,7 @@ public class Vector3 {
 
     /**
      * Создаёт экземпляр вектора на основе значений трёх составляющих
+     *
      * @param x первая составляющая, описывающая X-координату
      * @param y вторая составляющая, описывающая Y-координату
      * @param z третья составляющая, описывающая Z-координату
@@ -20,6 +22,7 @@ public class Vector3 {
 
     /**
      * X-составляющая вектора
+     *
      * @return X-составляющая вектора
      */
     public float getX() {
@@ -28,6 +31,7 @@ public class Vector3 {
 
     /**
      * Y-составляющая вектора
+     *
      * @return Y-составляющая вектора
      */
     public float getY() {
@@ -36,6 +40,7 @@ public class Vector3 {
 
     /**
      * Z-составляющая вектора
+     *
      * @return Z-составляющая вектора
      */
     public float getZ() {
@@ -44,6 +49,7 @@ public class Vector3 {
 
     /**
      * Метод, возвращающий составляющую вектора по порядковому номеру
+     *
      * @param idx порядковый номер
      * @return значение составляющей вектора
      */
@@ -52,15 +58,24 @@ public class Vector3 {
     }
 
     private static final float EPSILON = 1e-10f;
+
     /**
      * Метод, возвращающий длину вектора
+     *
      * @return длина вектора
      */
     public float length() {
         float lenSqr = values[0] * values[0] + values[1] * values[1] + values[2] * values[2];
         if (lenSqr < EPSILON)
             return 0;
-        return (float)Math.sqrt(lenSqr);
+        return (float) Math.sqrt(lenSqr);
     }
 
+    public Vector3 normalize(Vector3 v) {
+        float x = v.getX() / length();
+        float y = v.getY() / length();
+        float z = v.getZ() / length();
+        return new Vector3(x, y, z);
+    }
 }
+
