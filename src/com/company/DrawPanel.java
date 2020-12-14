@@ -33,8 +33,8 @@ public class DrawPanel extends JPanel
         scene.showAxes();
 
         scene.getModelsList().add(new Spring(
-               0.1f,
-                new Vector3(0,0, 0), 0.1f, 6, 1000, false
+               0.1f,0.01f,
+                new Vector3(0,0, 0), 0.1f, 6, 21, false
         ));
 
         camController.addRepaintListener(this);
