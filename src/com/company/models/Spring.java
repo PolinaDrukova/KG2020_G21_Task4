@@ -53,7 +53,7 @@ public class Spring implements IModel {
             }
         }
         lines.add(new PolyLine3D((spring), false));
-        Matrix3 q = new Matrix3();
+
 
         Vector3[][] circle = new Vector3[spring.size()][frequency];
 
@@ -63,9 +63,11 @@ public class Spring implements IModel {
                 dx = spring.get(i).getX() + (float) (section * Math.cos(da)) ;
                 dy = spring.get(i).getY() + (float) (section * Math.sin(da));
                 dz = spring.get(i).getZ();
-                circle[i][j] = new Vector3(dx, dy, dz)  ;
+
+                circle[i][j] =  new Vector3(dx, dy, dz);
                 da += stepOfRadius;
             }
+
 
 
             lines.add(new PolyLine3D(Arrays.asList(circle[i]), true));

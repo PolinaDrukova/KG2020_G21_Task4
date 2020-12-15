@@ -70,12 +70,5 @@ public class Vector3 {
             return 0;
         return (float) Math.sqrt(lenSqr);
     }
-
-    public Vector3 normalize(Vector3 v) {
-        float x = v.getX() / length();
-        float y = v.getY() / length();
-        float z = v.getZ() / length();
-        return new Vector3(x, y, z);
-    }
 }
 
